@@ -6,6 +6,10 @@ spec:
   results:
     - name: version
       description: la nueva version de la imagen
+  params:
+    - name: IMAGE
+      description: la imagen a construir
+      type: string
   steps:
     - name: crear-codigo
       image: alpine
