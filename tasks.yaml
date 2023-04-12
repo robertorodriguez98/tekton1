@@ -13,5 +13,7 @@ spec:
         #!/usr/bin/env bash
         version=$(git rev-parse --short HEAD)        
       workingDir: $(workspaces.source.path)    
+  workspaces:
+    - name: source
 
 
