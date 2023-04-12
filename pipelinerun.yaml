@@ -24,4 +24,4 @@ spec:
   - name: repo-url
     value: https://github.com/robertorodriguez98/tekton.git
   - name: image-reference
-    value: robertorm/pruebatekton:v1
+    value: robertorm/pruebatekton
