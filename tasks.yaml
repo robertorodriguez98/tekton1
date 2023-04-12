@@ -12,8 +12,11 @@ spec:
       script: |
         #!/usr/bin/env sh
         apk add --no-cache git && rm -rf /var/cache/apk/*
-        version=$(git rev-parse --short HEAD)        
-      workingDir: $(workspaces.source.path)    
+        codversion=$(git rev-parse --short HEAD)    
+        version=$NOMBRE:$codversion
+      env:
+        - name: NOMBRE
+          value: $(params.image-reference)  
   workspaces:
     - name: source
 

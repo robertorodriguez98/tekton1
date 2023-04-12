@@ -31,6 +31,9 @@ spec:
     workspaces:
     - name: source
       workspace: shared-data
+    params:
+    - name: NOMBRE
+      value: $(params.image-reference)
   - name: construir-imagen
     runAfter: ["codigo-version"]
     taskRef:
@@ -42,4 +45,4 @@ spec:
       workspace: docker-credentials
     params:
     - name: IMAGE
-      value: $([params.image-reference],[tasks.codigo-version.results.version].join(':'))
+      value: $(tasks.codigo-version.results.version)
