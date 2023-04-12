@@ -11,6 +11,7 @@ spec:
       image: alpine
       script: |
         #!/usr/bin/env sh
+        apk add --no-cache git && rm -rf /var/cache/apk/*
         version=$(git rev-parse --short HEAD)        
       workingDir: $(workspaces.source.path)    
   workspaces:
