@@ -45,4 +45,4 @@ spec:
       workspace: docker-credentials
     params:
     - name: IMAGE
-      value: $(tasks.codigo-version.results.version)
+      value: $(tasks.codversion.results.version)
