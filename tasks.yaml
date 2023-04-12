@@ -19,7 +19,7 @@ spec:
         codversion=$(git rev-parse --short HEAD)    
         version=$IMAGE:$codversion
         #echo $version | tee $(results.version.path)
-        echo "'$version'" \\  | tee $(results.version.path);
+        echo "'$version'" | tee $(results.version.path)
       args:
         - echo
       workingDir: $(workspaces.source.path)
