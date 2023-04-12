@@ -32,7 +32,7 @@ spec:
     - name: source
       workspace: shared-data
     params:
-    - name: NOMBRE
+    - name: IMAGE
       value: $(params.image-reference)
   - name: construir-imagen
     runAfter: ["codigo-version"]
