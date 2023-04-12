@@ -18,7 +18,7 @@ spec:
         apk add --no-cache git && rm -rf /var/cache/apk/*
         codversion=$(git rev-parse --short HEAD)    
         version=$IMAGE:$codversion
-        echo $version | tee $(results.version.path)
+        #echo $version | tee $(results.version.path)
         echo "'$version'" \\  | tee $(results.version.path);
       args:
         - echo
