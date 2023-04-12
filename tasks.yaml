@@ -10,7 +10,7 @@ spec:
     - name: crear-codigo
       image: alpine
       script: |
-        #!/usr/bin/env bash
+        #!/usr/bin/env sh
         version=$(git rev-parse --short HEAD)        
       workingDir: $(workspaces.source.path)    
   workspaces:
