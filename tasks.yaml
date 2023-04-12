@@ -19,6 +19,8 @@ spec:
         codversion=$(git rev-parse --short HEAD)    
         version=$IMAGE:$codversion
         echo $version
+      args:
+        - echo
       workingDir: $(workspaces.source.path)
       env:
         - name: IMAGE
