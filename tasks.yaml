@@ -14,9 +14,6 @@ spec:
         apk add --no-cache git && rm -rf /var/cache/apk/*
         codversion=$(git rev-parse --short HEAD)    
         version=$IMAGE:$codversion
-      env:
-        - name: IMAGE
-          value: $(params.image-reference)  
   workspaces:
     - name: source
 
