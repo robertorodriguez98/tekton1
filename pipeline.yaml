@@ -24,9 +24,10 @@ spec:
     params:
     - name: url
       value: $(params.repo-url)
-  - name: codigo-version
+  - name: codversion
     runAfter: ["descargar-repositorio"]
     taskRef:
+      kind: task
       name: codversion
     workspaces:
     - name: source
