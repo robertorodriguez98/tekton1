@@ -46,4 +46,4 @@ spec:
       workspace: docker-credentials
     params:
     - name: IMAGE
-      value: $(tasks.codversion.results.version)
+      value: "$(tasks.codversion.results.version)"

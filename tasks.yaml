@@ -20,6 +20,9 @@ spec:
         version=$IMAGE:$codversion
         echo $version
       workingDir: $(workspaces.source.path)
+      env:
+        - name: IMAGE
+          value: $(params.IMAGE)
   workspaces:
     - name: source
 
