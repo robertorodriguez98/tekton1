@@ -69,4 +69,4 @@ spec:
     - name: basic-auth
       workspace: basic-auth
     - name: source
-      workspace: shared-data2
+      workspace: shared-data
