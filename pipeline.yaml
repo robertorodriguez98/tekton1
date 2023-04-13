@@ -78,6 +78,8 @@ spec:
     workspaces:
     - name: source
       workspace: shared-data2
+    - name: basic-auth
+      workspace: basic-auth
     params:
     - name: IMAGE
       value: $(params.image-reference)
