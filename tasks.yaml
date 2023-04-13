@@ -12,10 +12,10 @@ spec:
       type: string
   steps:
     - name: crear-codigo
-      image: alpine
+      image: alpine/git:latest
       script: |
         #!/usr/bin/env sh
-        apk add --no-cache git && rm -rf /var/cache/apk/*
+        #apk add --no-cache git && rm -rf /var/cache/apk/*
         codversion=$(git rev-parse --short HEAD)    
         ls
         #version=$IMAGE:$codversion
