@@ -68,6 +68,7 @@ spec:
       workingDir: $(workspaces.source.path)
       env:
         - name: IMAGE
+          value: $(params.IMAGE)
         - name: PARAM_USER_HOME
           value: $(params.USER_HOME)
         - name: WORKSPACE_BASIC_AUTH_DIRECTORY_PATH
