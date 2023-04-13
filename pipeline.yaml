@@ -82,4 +82,4 @@ spec:
       workspace: basic-auth
     params:
     - name: IMAGE
-      value: $(params.image-reference)
+      value: "$(tasks.codversion.results.version)"
