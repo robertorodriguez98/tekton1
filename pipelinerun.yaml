@@ -20,6 +20,9 @@ spec:
   - name: docker-credentials
     secret:
       secretName: docker-credentials
+  - name: basic-auth
+    secret:
+      secretName: basic-auth
   params:
   - name: repo-url
     value: https://github.com/robertorodriguez98/tekton1.git
