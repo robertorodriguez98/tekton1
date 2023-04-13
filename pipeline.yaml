@@ -50,7 +50,6 @@ spec:
     - name: IMAGE
       value: "$(tasks.codversion.results.version)"
   - name: git-push
-    runAfter:  ["construir-imagen"]
     taskRef:
       name: git-cli
       params:
