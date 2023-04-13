@@ -57,11 +57,10 @@ spec:
         git clone https://github.com/robertorodriguez98/argocd1
         cd argocd1
         git config --global user.name "Roberto Rodriguez Marquez"
-        git config --global user.email "robertorodriguezmarquez98@gmail.com"
-        git checkout merger
+        git config --global user.email "robertorodriguezmarquez98@gmail.com
         sed -ri "s/robertorm\/pruebatekton:.*$/robertorm\/pruebatekton:$VERSION/g" manifests/deploy.yaml
         git commit --allow-empty -m "nueva version de la imagen"
-        git push origin merger
+        git push
       args:
         - echo
       workingDir: $(workspaces.source.path)
@@ -74,3 +73,4 @@ spec:
           value: $(workspaces.basic-auth.path)
   workspaces:
     - name: source
+    - name: basic-auth
