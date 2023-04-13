@@ -53,18 +53,18 @@ spec:
     taskRef:
       name: git-cli
         params:
-    - name: GIT_SCRIPT
-      value: |
-        #!/usr/bin/env sh
-        VERSION=$(tasks.codversion.results.version)
-        git clone git@github.com:robertorodriguez98/argocd1.git
-        cd argocd1/manifests/
-        git config --global user.name "Roberto Rodriguez Marquez"
-        git config --global user.email "robertorodriguezmarquez98@gmail.com"
-        git checkout merger
-        sed -ri "s/robertorm\/pruebatekton:.*$/robertorm\/pruebatekton:$VERSION/g" deploy.yaml
-        git commit --allow-empty -m "nueva version de la imagen"
-        git push
+        - name: GIT_SCRIPT
+          value: |
+            #!/usr/bin/env sh
+            VERSION=$(tasks.codversion.results.version)
+            git clone git@github.com:robertorodriguez98/argocd1.git
+            cd argocd1/manifests/
+            git config --global user.name "Roberto Rodriguez Marquez"
+            git config --global user.email "robertorodriguezmarquez98@gmail.com"
+            git checkout merger
+            sed -ri "s/robertorm\/pruebatekton:.*$/robertorm\/pruebatekton:$VERSION/g" deploy.yaml
+            git commit --allow-empty -m "nueva version de la imagen"
+            git push origin merger
     workspaces:
     - name: basic-auth
       workspace: basic-auth
