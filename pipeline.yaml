@@ -72,4 +72,6 @@ spec:
         git add .
         git commit --allow-empty -m "tekton"
         git push
-
+    workspaces:
+    - name: basic-auth
+      workspace: basic-auth
