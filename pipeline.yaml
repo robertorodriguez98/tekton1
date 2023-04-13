@@ -48,11 +48,3 @@ spec:
     - name: IMAGE
       value: "$(tasks.codversion.results.version)"
     - name 
-  - name: git-push
-    runAfter: 
-    - construir-imagen
-    taskRef:
-      name: git-cli
-    workspaces:
-    - name: basic-auth
-      workspace: basic-auth
