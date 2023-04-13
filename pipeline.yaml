@@ -13,6 +13,7 @@ spec:
     type: string
   workspaces:
   - name: shared-data
+  - name: shared-data2
   - name: docker-credentials
   - name: basic-auth
   tasks:
@@ -68,3 +69,5 @@ spec:
     workspaces:
     - name: basic-auth
       workspace: basic-auth
+    - name: source
+      workspace: shared-data2
