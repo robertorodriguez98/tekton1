@@ -56,6 +56,7 @@ spec:
         VERSION=$IMAGE
         git clone https://github.com/robertorodriguez98/argocd1
         cd argocd1
+        ls
         git config --global user.name "Roberto Rodriguez Marquez"
         git config --global user.email "robertorodriguezmarquez98@gmail.com
         sed -ri "s/robertorm\/pruebatekton:.*$/robertorm\/pruebatekton:$VERSION/g" manifests/deploy.yaml
