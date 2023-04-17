@@ -1,0 +1,48 @@
+apiVersion: triggers.tekton.dev/v1beta1
+kind: TriggerTemplate
+metadata:
+  name: github-pr-trigger-template
+spec:
+  params:
+  - name: revision
+    default: main
+  - name: repo-url
+  resourcetemplates:
+  - apiVersion: tekton.dev/v1beta1
+    kind: PipelineRun
+    metadata:
+      generateName: crear-imagen-run-
+    spec:
+      pipelineRef:
+        name: crear-imagen
+      podTemplate:
+        securityContext:
+          fsGroup: 65532
+      workspaces:
+      - name: shared-data
+        volumeClaimTemplate:
+          spec:
+            accessModes:
+            - ReadWriteOnce
+            resources:
+              requests:
+                storage: 1Gi
+      - name: shared-data2
+        volumeClaimTemplate:
+          spec:
+            accessModes:
+            - ReadWriteOnce
+            resources:
+              requests:
+                storage: 1Gi
+      - name: docker-credentials
+        secret:
+          secretName: docker-credentials
+      - name: basic-auth
+        secret:
+          secretName: basic-auth
+      params:
+      - name: repo-url
+        value: https://github.com/robertorodriguez98/tekton1.git
+      - name: image-reference
+        value: robertorm/pruebatekton
