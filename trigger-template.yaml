@@ -44,5 +44,7 @@ spec:
       params:
       - name: repo-url
         value: https://github.com/robertorodriguez98/tekton1.git
+      - name: revision
+        value: $(tt.params.revision)
       - name: image-reference
         value: robertorm/pruebatekton
