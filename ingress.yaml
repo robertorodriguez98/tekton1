@@ -13,6 +13,6 @@ spec:
             pathType: Exact
             backend:
               service:
-                name: github-pr
+                name: el-github-pr
                 port:
                   number: 8080
