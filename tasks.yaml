@@ -54,6 +54,8 @@ spec:
         chmod 400 "${PARAM_USER_HOME}/.gitconfig"
         # Mio
         VERSION=$IMAGE
+        echo $VERSION
+        echo $IMAGE
         git clone https://github.com/robertorodriguez98/argocd1
         cd argocd1
         ls
