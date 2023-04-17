@@ -63,8 +63,9 @@ spec:
         git config --global user.email "robertorodriguezmarquez98@gmail.com"
         sed -ri "s/robertorm\/pruebatekton:.*/$VERSION/g" manifests/deploy.yaml
         cat manifests/deploy.yaml | egrep "robertorm"
+        git add *
         git commit --allow-empty -m "nueva version de la imagen"
-        git push
+        git push origin main
       args:
         - echo
       workingDir: $(workspaces.source.path)
