@@ -59,7 +59,7 @@ spec:
         ls
         git config --global user.name "Roberto Rodriguez Marquez"
         git config --global user.email "robertorodriguezmarquez98@gmail.com"
-        sed -ri "s/robertorm\/pruebatekton:.*$/robertorm\/pruebatekton:$VERSION/g" manifests/deploy.yaml
+        sed -ri "s/robertorm\/pruebatekton:.*/$VERSION/g" manifests/deploy.yaml
         cat manifests/deploy.yaml | egrep "robertorm"
         git commit --allow-empty -m "nueva version de la imagen"
         git push
