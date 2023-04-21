@@ -140,11 +140,7 @@ sudo install kubectl /usr/local/bin/kubectl
     ![dashboard](images/argo1.png)
     3. Obtenemos las credenciales de argoCD:
         * Usuario: admin
-        * Contraseña:
-
-        ```bash
-        kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d;echo
-        ```
+        * Contraseña `kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d;echo`
     4. Ejecutamos la aplicación una primera vez:
     ```bash
     kubectl apply -f https://raw.githubusercontent.com/robertorodriguez98/argocd1/main/app.yaml
@@ -165,6 +161,15 @@ sudo install kubectl /usr/local/bin/kubectl
     ```bash
     kubectl apply -f pipeline.yaml,tasks.yaml,triggers-rbac.yaml,trigger-binding.yaml,trigger-template.yaml,event-listener.yaml
     ```
+    Los manifiestos que hemos aplicado son los siguientes:
+
+    * **pipeline.yaml**: contiene la definición del pipeline.
+    * **tasks.yaml**: contiene la definición de las tareas que se ejecutarán en el pipeline.
+    * **triggers-rbac.yaml**: contiene la definición de los roles y los rolesbindings necesarios para que los triggers funcionen.
+    * **trigger-binding.yaml**: contiene la definición del trigger binding, que permite extraer datos de un evento y mandarlos al trigger-template.
+    * **trigger-template.yaml**: contiene la definición del trigger template, que permite definir los recursos que se crearán cuando se dispare el trigger, entre ellos el pipelinerun que ejecutará el pipeline.
+    * **event-listener.yaml**: permite procesar eventos basados en http con datos json, en este caso lo usamos para conectarlo a github usando un webhook.
+
     4. Para que el event listener funcione, también hay que hacer un port forward del servicio:
     ```bash
     kubectl port-forward service/el-github-pr 8090:8080 --address=0.0.0.0
