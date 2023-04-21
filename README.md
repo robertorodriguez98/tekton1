@@ -78,14 +78,62 @@ sudo install kubectl /usr/local/bin/kubectl
         apiVersion: v1
         kind: Secret
         metadata:
-        name: docker-credentials
+          name: docker-credentials
         data:
-        config.json: <contenido codificado en base64>
+          config.json: <contenido codificado en base64>
         ```
         4. finalmente creamos el secret:
         ```bash
         kubectl apply -f docker-credentials.yaml
         ```
     * **github**:
-    
+        1. Creamos el fichero github-credentials.yaml con el siguiente contenido:
+        ```yaml
+        kind: Secret
+        apiVersion: v1
+        metadata:
+        name: basic-auth
+        type: Opaque
+        stringData:
+        .gitconfig: |
+            [credential "https://github.com"]
+            helper = store
+        .git-credentials: |
+            https://robertorodriguez98:<token de github>@github.com
+        ```
+        2. finalmente creamos el secret:
+        ```bash
+        kubectl apply -f github-credentials.yaml
+        ```
+6. Instalamos tekton, siguiendo los siguientes pasos:
+    1. Instalamos tekton-pipelines:
+    ```bash
+    kubectl apply --filename https://storage.googleapis.com/tekton-releases/pipeline/latest/release.yaml
+    ```
+    2. Instalamos los triggers:
+    ```bash
+    kubectl apply --filename \
+    https://storage.googleapis.com/tekton-releases/triggers/latest/release.yaml
+    kubectl apply --filename \
+    https://storage.googleapis.com/tekton-releases/triggers/latest/interceptors.yaml
+    ```
+    3. Instalamos el dashboard:
+    ```bash
+    kubectl apply -f https://storage.googleapis.com/tekton-releases/dashboard/previous/v0.32.0/release-full.yaml
+    ```
+    4. Para acceder al dashboard, ejecutamos el siguiente comando:
+    ```bash
+    kubectl port-forward -n tekton-pipelines service/tekton-dashboard 9097:9097 -a 0.0.0.0
+    ```
+    y accedemos a [http://localhost:9097/](http://localhost:9097/)
+![dashboard](images/tekton1.png)
+7. instalamos argoCD:
+
+
+
+
+
+
+
+
 
