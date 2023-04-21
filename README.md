@@ -187,7 +187,7 @@ sudo install kubectl /usr/local/bin/kubectl
     6. En **Payload URL** introducimos la url de ngrok y dejamos las opciones como en la imagen:
     ![dashboard](images/webhook.png)
 
-Ahora, solo quedaría hacer un push al repositorio para que se ejecute el pipeline!  :smile::smile:
+Ahora, solo quedaría hacer un push al repositorio para que se ejecute el pipeline!  :smile::smile::smile:
 
 
 
