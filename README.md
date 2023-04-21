@@ -156,13 +156,19 @@ sudo install kubectl /usr/local/bin/kubectl
     ```bash
     git clone https://github.com/robertorodriguez98/tekton1.git && cd tekton1
     ```
-    2. aplicamos los manifiestos necesarios
+    2. instalamos las tareas necesarias:
+    ```bash
+    kubectl apply -f https://raw.githubusercontent.com/tektoncd/catalog/main/task/git-clone/0.9/git-clone.yaml
+    kubectl apply -f https://raw.githubusercontent.com/tektoncd/catalog/main/task/kaniko/0.6/kaniko.yaml
+    ```
+    3. aplicamos los manifiestos necesarios
     ```bash
     kubectl apply -f pipeline.yaml,tasks.yaml,triggers-rbac.yaml,trigger-binding.yaml,trigger-template.yaml,event-listener.yaml
     ```
-    3. Para que el event listener funcione, también hay que hacer un port forward del servicio:
+    4. Para que el event listener funcione, también hay que hacer un port forward del servicio:
     ```bash
     kubectl port-forward service/el-github-pr 8090:8080 --address=0.0.0.0
+    ```
 
 8. Creamos el webhook en github:
 
