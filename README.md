@@ -46,3 +46,20 @@ En el caso de no tener instalado git podremos descargarnos el repositorio compri
         * repo
         * admin:org
         * admin:repo_hook
+3. Instalamos minikube; vamos a usar como driver docker, por lo que lo instalamos también:
+
+```bash
+sudo apt install docker.io
+sudo usermod -aG docker usuario
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+sudo install minikube-linux-amd64 /usr/local/bin/minikube
+minikube start --driver=docker
+```
+
+4. Instalamos kubectl, siguiendo los siguientes pasos:
+
+```bash
+curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
+sudo install kubectl /usr/local/bin/kubectl
+```
+
