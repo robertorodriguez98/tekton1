@@ -18,7 +18,7 @@
 
 Este repositorio contiene los archivos necesarios para crear un pipeline de tekton que se encargará de crear una imagen docker, subirla a dockerhub y actualizar el repositorio de argocd con los cambios realizados.
 
-Este repositorio contiene 
+El funcionamiento es el siguiente:
 
 1. Desarrollador modifica el index.html.
 2. Al hace un push, salta un webhook que conecta con un EventListener de tekton, que ejecuta el pipeline que realiza lo siguiente:
