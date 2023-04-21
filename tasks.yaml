@@ -15,6 +15,7 @@ spec:
       image: alpine/git:latest
       script: |
         #!/usr/bin/env sh
+        git config --global --add safe.directory '*'
         codversion=$(git rev-parse --short HEAD)    
         ls
         echo -n $IMAGE:$codversion | tee $(results.version.path)
