@@ -63,3 +63,29 @@ curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s ht
 sudo install kubectl /usr/local/bin/kubectl
 ```
 
+5. Ahora creamos los secret que usaremos en el pipeline:
+    * **dockerhub**:
+        1. iniciamos sesión con la línea de comandos:
+        ```bash
+         docker login index.docker.io 
+        ```
+        2. copiamos el contenido del archivo **config.json** que se ha creado en la carpeta **.docker** de nuestro usuario, y lo codificamos en base64:
+        ```bash
+        cat ~/.docker/config.json | base64 -w0 
+        ```
+        3. Creamos el fichero docker-credentials.yaml con el siguiente contenido:
+        ```yaml
+        apiVersion: v1
+        kind: Secret
+        metadata:
+        name: docker-credentials
+        data:
+        config.json: <contenido codificado en base64>
+        ```
+        4. finalmente creamos el secret:
+        ```bash
+        kubectl apply -f docker-credentials.yaml
+        ```
+    * **github**:
+    
+
