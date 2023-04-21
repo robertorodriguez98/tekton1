@@ -65,9 +65,10 @@ sudo install kubectl /usr/local/bin/kubectl
 
 5. Ahora creamos los secret que usaremos en el pipeline:
     * **dockerhub**:
-        1. iniciamos sesión con la línea de comandos:
+        1. iniciamos sesión con la línea de comandos (las mimas credenciales en ambos comandos):
         ```bash
          docker login index.docker.io 
+         docker login
         ```
         2. copiamos el contenido del archivo **config.json** que se ha creado en la carpeta **.docker** de nuestro usuario, y lo codificamos en base64:
         ```bash
