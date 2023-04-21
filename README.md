@@ -150,29 +150,38 @@ sudo install kubectl /usr/local/bin/kubectl
     kubectl apply -f https://raw.githubusercontent.com/robertorodriguez98/argocd1/main/app.yaml
     ```
 ![dashboard](images/argo2.png)
+
+8. Ejecutamos el pipeline:
+    1. Copiamos el repositorio y nos movemos a la carpeta:
+    ```bash
+    git clone https://github.com/robertorodriguez98/tekton1.git && cd tekton1
+    ```
+    2. aplicamos los manifiestos necesarios
+    ```bash
+    kubectl apply -f pipeline.yaml,tasks.yaml,triggers-rbac.yaml,trigger-binding.yaml,trigger-template.yaml,event-listener.yaml
+    ```
+    3. Para que el event listener funcione, también hay que hacer un port forward del servicio:
+    ```bash
+    kubectl port-forward service/el-github-pr 8090:8080 --address=0.0.0.0
+
 8. Creamos el webhook en github:
-    1. ejecutamos ngrok aputando al puerto de tekton (9097)
+
+    1. ejecutamos ngrok aputando al puerto del event listener (8090)
     ```bash
     wget https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz
     sudo tar xvzf ngrok-v3-stable-linux-amd64.tgz -C /usr/local/bin
-    ngrok http 9097
+    ngrok http 8090
     ```
     ![dashboard](images/ngrok.png)
+
     2. Vamos a la página principal del repositorio.
     3. Seleccionamos **Settings**.
-    3. Seleccionamos **Webhooks**.
-    4. Seleccionamos **Add webhook**.
-    5. En **Payload URL** introducimos la url del EventListener de tekton, que podemos obtener con el siguiente comando:
-    ```bash
-    kubectl get eventlistener -n tekton-pipelines
-    ```
-    6. En **Content type** seleccionamos **application/json**.
-    7. En **Secret** introducimos el nombre del secret que hemos creado en el paso 5, en este caso **github**.
-    8. Seleccionamos **Let me select individual events**.
-    9. Seleccionamos **Pushes**.
-    10. Seleccionamos **Add webhook**.
+    4. Seleccionamos **Webhooks**.
+    5. Seleccionamos **Add webhook**.
+    6. En **Payload URL** introducimos la url de ngrok y dejamos las opciones como en la imagen:
+    ![dashboard](images/webhook.png)
 
-
+Ahora, solo quedaría hacer un push al repositorio para que se ejecute el pipeline!  :smile:
 
 
 
