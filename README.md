@@ -128,6 +128,49 @@ sudo install kubectl /usr/local/bin/kubectl
     y accedemos a [http://localhost:9097/](http://localhost:9097/)
 ![dashboard](images/tekton1.png)
 7. instalamos argoCD:
+    1. instalamos el cliente de argoCD:
+    ```bash
+    kubectl create namespace argocd
+    kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+    ```
+    2. Para acceder al dashboard, ejecutamos el siguiente comando:
+    ```bash
+    kubectl port-forward svc/argocd-server -n argocd 8080:80 --address=0.0.0.0
+    ```
+    ![dashboard](images/argo1.png)
+    3. Obtenemos las credenciales de argoCD:
+        * Usuario: admin
+        * Contraseña:
+
+        ```bash
+        kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d;echo
+        ```
+    4. Ejecutamos la aplicación una primera vez:
+    ```bash
+    kubectl apply -f https://raw.githubusercontent.com/robertorodriguez98/argocd1/main/app.yaml
+    ```
+![dashboard](images/argo2.png)
+8. Creamos el webhook en github:
+    1. ejecutamos ngrok aputando al puerto de tekton (9097)
+    ```bash
+    wget https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz
+    sudo tar xvzf ngrok-v3-stable-linux-amd64.tgz -C /usr/local/bin
+    ngrok http 9097
+    ```
+    ![dashboard](images/ngrok.png)
+    2. Vamos a la página principal del repositorio.
+    3. Seleccionamos **Settings**.
+    3. Seleccionamos **Webhooks**.
+    4. Seleccionamos **Add webhook**.
+    5. En **Payload URL** introducimos la url del EventListener de tekton, que podemos obtener con el siguiente comando:
+    ```bash
+    kubectl get eventlistener -n tekton-pipelines
+    ```
+    6. En **Content type** seleccionamos **application/json**.
+    7. En **Secret** introducimos el nombre del secret que hemos creado en el paso 5, en este caso **github**.
+    8. Seleccionamos **Let me select individual events**.
+    9. Seleccionamos **Pushes**.
+    10. Seleccionamos **Add webhook**.
 
 
 
